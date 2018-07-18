@@ -15,6 +15,19 @@ func main() {
 	fmt.Println(ConcatWithMultipleReturn(a, b))
 	fmt.Println("The output of ConcatWithSingleReturn of "+a+" & "+b+" is ",
 		ConcatWithSingleReturn(a, b))
+	PointerDemo()
+}
+
+//PointerDemo - Pointer Demo Function
+func PointerDemo() {
+	a := 25
+	b := &a
+	fmt.Println("The Location of a is", b)
+	fmt.Println("The value of a is", *b)
+	fmt.Println("The value of a is", a)
+	*b = 100
+	fmt.Println("The value of a is", a)
+	fmt.Println("The value of a is", *b)
 }
 
 //ConcatWithMultipleReturn - 2 values returned from function below
