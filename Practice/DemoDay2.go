@@ -13,6 +13,24 @@ type Student struct {
 	section     string
 }
 
+//DisplayStudent - ValueReceiver method of the Student Struct
+func (myStudent Student) DisplayStudent() string {
+	return "The Name of Student is " + myStudent.studentName
+}
+
+//EditStudent - PointerReceiver method of the Student Struct
+func (myStudent *Student) EditStudent(student Student) {
+	student = Student{studentName: "K.VijayaLalitha",
+		rollNumber: 22,
+		class:      "XII",
+		section:    "C"}
+	//myStudent = &student
+	myStudent.studentName = student.studentName
+	myStudent.rollNumber = student.rollNumber
+	myStudent.class = student.class
+	myStudent.section = student.section
+}
+
 func main() {
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/about", About)
@@ -39,5 +57,8 @@ func DisplayStudent(w http.ResponseWriter, r *http.Request) {
 		section:    "A"}
 	fmt.Fprintln(w, "The Name of Student is "+myStudent.studentName)
 	fmt.Fprintln(w, "The Class of the Student "+myStudent.studentName+" is "+myStudent.class)
-	fmt.Fprintln(w, "The Section of the Student "+myStudent.studentName+" is "+myStudent.section)
+	fmt.Fprintln(w, "The Section of the Student "+myStudent.studentName+" is "+myStudent.section+"\n")
+	fmt.Fprintln(w, "Calling to the Student Struct's DisplayStudent() ValueReceiver method:\n"+myStudent.DisplayStudent())
+	myStudent.EditStudent(myStudent) //Making a call to PointerReceiver method to change the myStudent object forever
+	fmt.Fprintln(w, "Calling to the Student Struct's DisplayStudent() ValueReceiver method to check myStudent Object:\n"+myStudent.DisplayStudent())
 }
