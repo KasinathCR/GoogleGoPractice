@@ -24,11 +24,7 @@ func (myStudent *Student) EditStudent(student Student) {
 		rollNumber: 22,
 		class:      "XII",
 		section:    "C"}
-	//myStudent = &student
-	myStudent.studentName = student.studentName
-	myStudent.rollNumber = student.rollNumber
-	myStudent.class = student.class
-	myStudent.section = student.section
+	*myStudent = student
 }
 
 func main() {
