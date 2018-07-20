@@ -14,11 +14,15 @@ type Student struct {
 }
 
 //DisplayStudent - ValueReceiver method of the Student Struct
+//ValueReceiver methods usually create a copy of the struct & works on it
+//Should go for ValueReceiver methods only when the struct is very small
 func (myStudent Student) DisplayStudent() string {
 	return "The Name of Student is " + myStudent.studentName
 }
 
 //EditStudent - PointerReceiver method of the Student Struct
+//PointerReceiver methods usually works on the struct passed, as such
+//Should go for PointerReceiver methods only when the struct is complex
 func (myStudent *Student) EditStudent(student Student) {
 	student = Student{studentName: "K.VijayaLalitha",
 		rollNumber: 22,
